@@ -4,8 +4,7 @@ import ContextArmValue from "../../Contex/Contex.tsx"
 import { useRef } from "react";
 
 const Footer= ()=>{
-    const { Backgrond, RotateImg, settTime }= useContext(ContextArmValue)
-    const [ BackFooter, setBack ]= useState('')
+    const { RotateImg, settTime, BackColorText }= useContext(ContextArmValue)
     const [ RouterGo, setRouterGo ]= useState<number>(360)//define rotacao dos slides iniciando em -360
     const [ desableClick, setClick]= useState(false)
     const botaoRefGo = useRef<HTMLButtonElement>(null);
@@ -31,28 +30,6 @@ const Footer= ()=>{
           window.addEventListener("wheel", handleScroll, { passive: false, capture: true });
           return () => window.removeEventListener("wheel", handleScroll);
     }, [])
-
-
-    useEffect(()=>{
-        switch (Backgrond) {
-                case 0:
-                    setBack('#F57E00')
-                    break;
-                case 1:
-                    setBack('#9DF400')
-                    break;
-                case 2:
-                    setBack('#F54001')
-                    break;
-                case 3:
-                    setBack('#9928F5')
-                    break;
-            
-                default:
-                    break;
-        }
-        
-    }, [Backgrond])
 
     const Go= ()=>{
         setRouterGo((e)=> e + 80)
@@ -84,9 +61,9 @@ const Footer= ()=>{
     
 
     return(
-        <section className="flex items-start overflow-hidden w-full absolute bottom-[0px] justify-center left-[0px]" style={{display: `${RotateImg}`}}>
-                 <svg className="-mb-[250px]" style={{transition: "2.5s", transform: `rotate(${RouterGo}deg)`}}  version="1.0" xmlns="http://www.w3.org/2000/svg" width="max-width" height="380px" viewBox="0 0 2700 2700"preserveAspectRatio="xMidYMid meet">
-                    <g transform="translate(0.000000,2700.000000) scale(0.100000,-0.100000)" fill="white" stroke="none">
+        <section className="flex items-start h-[370px] overflow-hidden w-[360px] absolute top-[265px] -left-[200px]" style={{display: `${RotateImg}`, zIndex: '2'}}>
+                 <svg className="relative top-20" style={{transition: "2.5s", transform: `rotate(${RouterGo}deg)`}}  version="1.0" xmlns="http://www.w3.org/2000/svg" width="max-width" height="380px" viewBox="0 0 2700 2700"preserveAspectRatio="xMidYMid meet">
+                    <g transform="translate(0.000000,2700.000000) scale(0.100000,-0.100000)" fill={BackColorText} stroke="none">
                     <path d="M13362 25333 l3 -468 135 0 135 0 3 468 2 467 -140 0 -140 0 2 -467z"/>
                     <path d="M12226 25533 l-38 -4 6 -42 c3 -23 19 -175 36 -337 17 -162 33 -296 34 -298 8 -8 86 12 86 22 0 15 -58 570 -65 624 -4 23 -9 41 -13 40 -4 -1 -24 -3 -46 -5z"/>
                     <path d="M14716 25501 c-11 -72 -68 -633 -64 -636 10 -9 88 -15 88 -7 0 5 16 157 35 338 19 180 34 328 32 329 -1 1 -21 5 -44 8 -41 5 -42 5 -47 -32z"/>

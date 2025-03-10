@@ -6,22 +6,22 @@ import { Link } from "react-router-dom"
 import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 
 const Header= ()=>{
-    const { Backgrond, ManipulationRotate }= useContext(ContextArmValue)
+    const { Backgrond, ManipulationRotate, BackColorText }= useContext(ContextArmValue)
     const [ BackHeader, setBack ]= useState('')
 
     useEffect(()=>{
             switch (Backgrond) {
                 case 0:
-                    setBack('#F57E00')
+                    setBack('#304878')
                     break;
                 case 1:
-                    setBack('#9DF400')
+                    setBack('#ffffe2')
                     break;
                 case 2:
-                    setBack('#F54001')
+                    setBack('#8f8f8f')
                     break;
                 case 3:
-                    setBack('#9928F5')
+                    setBack('#ededf2')
                     break;
             
                 default:
@@ -39,24 +39,24 @@ const Header= ()=>{
         }
 
     return(
-        <header className={`items-center w-screen flex flex-row justify-between px-10 py-3`} style={{background: `${BackHeader}`}}>
+        <header className={`items-center w-screen flex flex-row justify-between px-10 py-3`} style={{background: `${BackHeader}`, zIndex: '3'}}>
             <div>
-                <h1 className="font-semibold text-[34px] text-white" style={{fontFamily: "Poppins"}}>fanta</h1>
+                <h1 className={`font-semibold text-[34px]`} style={{fontFamily: "Poppins", color: `${BackColorText}`}}>Drex</h1>
             </div>
             <ul className="flex flex-row gap-8">
-                <li className="text-white" style={{fontFamily: "Poppins"}}><Link to="/about" onClick={DesteFooter}>Abolt</Link></li>
-                <li className="text-white" style={{fontFamily: "Poppins"}}><Link to="/" onClick={ApressFooter}>Home</Link></li>
-                <li className="text-white" style={{fontFamily: "Poppins"}}>Products</li>
-                <li className="text-white" style={{fontFamily: "Poppins"}}>Contact</li>
+                <li style={{fontFamily: "Poppins", color: `${BackColorText}`}}><Link to="/about" onClick={DesteFooter}>Abolt</Link></li>
+                <li style={{fontFamily: "Poppins", color: `${BackColorText}`}}><Link to="/" onClick={ApressFooter}>Home</Link></li>
+                <li style={{fontFamily: "Poppins", color: `${BackColorText}`}}>Products</li>
+                <li style={{fontFamily: "Poppins", color: `${BackColorText}`}}>Contact</li>
             </ul>
             <div className="flex flex-row gap-6 items-center">
             <SignedIn>
               <UserButton />
             </SignedIn>
             <SignedOut>
-                <Link className="flex flex-row items-center" to="/Login"><FaUser color="white" /><p className="text-white">!</p></Link>
+                <Link className="flex flex-row items-center" to="/Login"><FaUser color={`${BackColorText}`} /><p style={{color: `${BackColorText}`}}>!</p></Link>
             </SignedOut>
-               <FaCartShopping color="white"/>
+               <FaCartShopping color={`${BackColorText}`} /><p style={{color: `${BackColorText}`}}/>
             </div>
         </header>
     )

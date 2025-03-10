@@ -6,28 +6,9 @@ import { Link } from "react-router-dom"
 import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 
 const Header= ()=>{
-    const { Backgrond, ManipulationRotate, BackColorText }= useContext(ContextArmValue)
-    const [ BackHeader, setBack ]= useState('')
+    const { ManipulationRotate, BackColorText, BackGroundUniver }= useContext(ContextArmValue)
 
-    useEffect(()=>{
-            switch (Backgrond) {
-                case 0:
-                    setBack('#304878')
-                    break;
-                case 1:
-                    setBack('#ffffe2')
-                    break;
-                case 2:
-                    setBack('#8f8f8f')
-                    break;
-                case 3:
-                    setBack('#ededf2')
-                    break;
-            
-                default:
-                    break;
-            }
-        }, [Backgrond])
+    
         //funcao para manipular a o footer
 
         const DesteFooter= ()=>{
@@ -39,7 +20,7 @@ const Header= ()=>{
         }
 
     return(
-        <header className={`items-center w-screen flex flex-row justify-between px-10 py-3`} style={{background: `${BackHeader}`, zIndex: '3'}}>
+        <header className={`items-center w-screen flex flex-row justify-between px-10 py-3`} style={{background: `${BackGroundUniver}`, zIndex: '3'}}>
             <div>
                 <h1 className={`font-semibold text-[34px]`} style={{fontFamily: "Poppins", color: `${BackColorText}`}}>Drex</h1>
             </div>

@@ -5,7 +5,7 @@ import { FaLocationPin } from "react-icons/fa6"
 
 
 const Apress= ()=>{
-    const { Backgrond, setColortext, BackColorText }= useContext(ContextArmValue)
+    const { Backgrond, setColortext, BackColorText, setBackUniver }= useContext(ContextArmValue)
     const [ colorBack, setColor ]= useState('')
  
 
@@ -51,6 +51,10 @@ const Apress= ()=>{
                 break;
         }
     }, [Backgrond])
+
+    useEffect(()=>{
+        setBackUniver(colorBack)
+    }, [colorBack])
 
     return(
         <section className={`flex flex-col items-center justify-end gap-[50px] pb-10`} style={{zIndex: '0', width: "100vmax", height: "100%", background: `${colorBack}`}}>

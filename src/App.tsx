@@ -13,6 +13,7 @@ function App() {
   const [ RotateImg, setRotation ]= useState(undefined)
   const [ TimeRotate, settTimeIten]= useState('1s')
   const [ BackColorText, setColor]= useState<string |undefined>(undefined)
+  const [ BackGroundUniver, setBackUniveruser]= useState<string | undefined> (undefined)
 
     const ManipulationBack=(e)=>{
         setBack(e)
@@ -26,10 +27,13 @@ function App() {
     const setColortext= (e)=>{
       setColor(e)
     }
+    const setBackUniver= ((e)=>{
+      setBackUniveruser(e)
+  })
 
   return (
     <section className="h-screen w-screen flex flex-col justify-between">
-      <ContextArmValue.Provider value={{ManipulationBack, ManipulationRotate, Backgrond, RotateImg, TimeRotate, settTime, BackColorText, setColortext}}>
+      <ContextArmValue.Provider value={{ManipulationBack, ManipulationRotate, Backgrond, RotateImg, TimeRotate, settTime, BackColorText, setColortext, setBackUniver, BackGroundUniver}}>
         <Header />
         <Cart />
         <Footer />

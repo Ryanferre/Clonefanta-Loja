@@ -5,6 +5,7 @@ import Footer from './componentesGlobais/footer/footer.tsx'
 import { ContextArmValue } from "./Contex/Contex.tsx"
 import { Outlet } from 'react-router-dom'
 import Cart from './componentesGlobais/Cart/Cart.tsx'
+import axios from 'axios';
 
 
 
@@ -31,13 +32,24 @@ function App() {
       setBackUniveruser(e)
   })
 
+  //Testenado apiRuby
+  const [pessoas, setPessoas] = useState([]);
+
+  axios.get('http://localhost:4567/Produtos')
+  .then(response => {
+    console.log(response.data);  // Aqui você verá os dados retornados da API
+  })
+  .catch(error => {
+    console.error('Erro ao buscar os produtos:', error);
+  });
+
   return (
     <section className="h-screen w-screen flex flex-col justify-between">
       <ContextArmValue.Provider value={{ManipulationBack, ManipulationRotate, Backgrond, RotateImg, TimeRotate, settTime, BackColorText, setColortext, setBackUniver, BackGroundUniver}}>
         <Header />
         <Cart />
-        <Footer />
         <Outlet />
+        <Footer />
       </ContextArmValue.Provider>
     </section>
   )

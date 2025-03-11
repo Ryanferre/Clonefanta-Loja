@@ -8,12 +8,22 @@ import { Navigation } from "swiper/modules"
 import "swiper/css";
 import { useContext } from "react"
 import ContextArmValue from "../../../Contex/Contex.tsx"
+import axios from 'axios';
+
+type Produto= {
+ ID: number;
+ Valor: string;
+ Nome: string;
+ pathFile: string
+}
+
 
 
 
 const Slider= ()=>{
     const [ activeSlide, setSlide ]= useState(0)
     const [ RotateAplic, setRotate ]= useState<string | undefined>()
+    const [ resBd, setresBd ]= useState< Produto[] >([])
     const { ManipulationBack, RotateImg, TimeRotate }= useContext(ContextArmValue)
 
     const ActiveSlide= (e: any)=>{
@@ -30,13 +40,27 @@ const Slider= ()=>{
         setRotate(RotateImg)
     }, [activeSlide])
 
+    useEffect(()=>{
+        axios.get('http://localhost:4567/Produtos')
+      .then(response => {
+        setresBd(response.data)  //dados retornados da API
+      })
+      .catch(error => {
+        console.error('Erro ao buscar os produtos:', error);
+      });
+    }, [])
+
+    useEffect(()=>{
+        console.log(resBd)
+    }, [resBd])
+
     return(
         <section className="absolute w-full h-[350px]">
             <Swiper className="w-full" style={{ display: "flex", justifyContent: "center", paddingLeft: "39%", alignItems: 'center'}} loop={true} centeredSlides={true} slidesPerView={1} modules={[Navigation]} navigation={{nextEl: ".Next-Previw", prevEl: ".Back-previw"}} onSlideChange={ActiveSlide} simulateTouch={false} speed={1200}>
-                    <SwiperSlide className="flex justify-center items-center"><img style={{transform: `${RotateAplic}`, transition: `${TimeRotate}`}} className="w-[300px] h-[400px]" src={Img1}/></SwiperSlide>
-                    <SwiperSlide className="flex justify-center items-center"><img style={{transform: `${RotateAplic}`, transition: `${TimeRotate}`}} className="w-[380px] h-[406px]" src={Img2}/></SwiperSlide>
-                    <SwiperSlide className="flex justify-center items-center"><img style={{transform: `${RotateAplic}`, transition: `${TimeRotate}`}} className="w-[240px] h-[390px]" src={Img3}/></SwiperSlide>
-                    <SwiperSlide className="flex justify-center items-center"><img style={{transform: `${RotateAplic}`, transition: `${TimeRotate}`}} className="w-[380px] h-[395px]" src={Img4}/></SwiperSlide>
+                <SwiperSlide className="flex justify-center items-center"><img style={{transform: `${RotateAplic}`, transition: `${TimeRotate}`}} className="w-[380px] h-[406px]" src={Img1}/></SwiperSlide>    
+                <SwiperSlide className="flex justify-center items-center"><img style={{transform: `${RotateAplic}`, transition: `${TimeRotate}`}} className="w-[380px] h-[406px]" src={Img2}/></SwiperSlide>
+                <SwiperSlide className="flex justify-center items-center"><img style={{transform: `${RotateAplic}`, transition: `${TimeRotate}`}} className="w-[240px] h-[390px]" src={Img3}/></SwiperSlide>
+                <SwiperSlide className="flex justify-center items-center"><img style={{transform: `${RotateAplic}`, transition: `${TimeRotate}`}} className="w-[380px] h-[395px]" src={Img4}/></SwiperSlide>
             </Swiper>
         </section>
     )

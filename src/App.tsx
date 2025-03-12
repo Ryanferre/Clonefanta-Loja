@@ -37,7 +37,6 @@ function App() {
         <Header />
         <Cart />
         <Outlet />
-        <Footer />
       </ContextArmValue.Provider>
     </section>
   )

@@ -3,6 +3,7 @@ import './index.css'
 import App from './App.tsx'
 import Abolt from './Pages/Abolt/Abolt.tsx'
 import Home from './home/Home.tsx'
+import Product from './home/componentes/Produtos/Prod.tsx'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import { ClerkProvider } from "@clerk/clerk-react";
 import Login from './home/componentes/Login/Login.tsx'
@@ -22,6 +23,10 @@ const routerPage= createBrowserRouter([
   {
     path: '/login',
     element: <Login />
+  },
+  {
+    path: '/products',
+    element: <Product />
   }]
   }
 ])

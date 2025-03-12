@@ -27,7 +27,7 @@ const Header= ()=>{
             <ul className="flex flex-row gap-8">
                 <li style={{fontFamily: "Poppins", color: `${BackColorText}`}}><Link to="/about" onClick={DesteFooter}>Abolt</Link></li>
                 <li style={{fontFamily: "Poppins", color: `${BackColorText}`}}><Link to="/" onClick={ApressFooter}>Home</Link></li>
-                <li style={{fontFamily: "Poppins", color: `${BackColorText}`}}>Products</li>
+                <li style={{fontFamily: "Poppins", color: `${BackColorText}`}}><Link to="/products">Products</Link></li>
                 <li style={{fontFamily: "Poppins", color: `${BackColorText}`}}>Contact</li>
             </ul>
             <div className="flex flex-row gap-6 items-center">
